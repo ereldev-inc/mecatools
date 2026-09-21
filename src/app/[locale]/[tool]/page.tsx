@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { UnitConverter } from "@/components/tools/UnitConverter";
+import { converters } from "@/lib/converters";
+import { ValveShimTool } from "@/components/tools/ValveShimTool";
+import { ValveClearanceTool } from "@/components/tools/ValveClearanceTool";
 import { CompressionTool } from "@/components/tools/CompressionTool";
 import { JsonLd } from "@/components/JsonLd";
 import { hasLocale, locales, type Locale } from "@/i18n/config";
@@ -102,11 +106,26 @@ export default async function ToolPage({ params }: Props) {
       </nav>
 
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{text.title}</h1>
-      <p className="mt-3 text-lg text-muted">{text.intro}</p>
+      <p className="mt-3 max-w-3xl text-lg text-muted">{text.intro}</p>
 
-      {tool.id === "compressionTest" ? (
+      {tool.id === "torqueConverter" || tool.id === "compressionConverter" ? (
+        <div className="mt-8 max-w-3xl">
+          <UnitConverter
+            {...converters[tool.id === "torqueConverter" ? "torque" : "compression"]}
+            labels={t.converter}
+          />
+        </div>
+      ) : tool.id === "compressionTest" ? (
         <div className="mt-8">
           <CompressionTool labels={t.compression} />
+        </div>
+      ) : tool.id === "valveClearance" ? (
+        <div className="mt-8">
+          <ValveClearanceTool labels={t.valves} />
+        </div>
+      ) : tool.id === "valveShims" ? (
+        <div className="mt-8">
+          <ValveShimTool labels={t.shims} valveLabels={t.valves} />
         </div>
       ) : (
         <section
@@ -120,7 +139,7 @@ export default async function ToolPage({ params }: Props) {
         </section>
       )}
 
-      <article className="mt-12">
+      <article className="mt-12 max-w-3xl">
         <h2 className="text-2xl font-semibold">{t.tool.about}</h2>
         {text.about.map((paragraph) => (
           <p key={paragraph} className="mt-3 leading-relaxed text-muted">

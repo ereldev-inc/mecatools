@@ -5,9 +5,10 @@ Free online tools for motorcycle mechanics. Static Next.js site (App Router, Typ
 ## Tools
 
 - Compression test (`/en/compression-test/`, `/fr/releve-compression/`)
-- Valve shims (`/en/valve-shims/`, `/fr/calcul-pastilles-soupapes/`)
+- Valve clearance (`/en/valve-clearance/`, `/fr/jeu-aux-soupapes/`)
+- Valve shim calculator (`/en/valve-shim-calculator/`, `/fr/calcul-pastilles-soupapes/`)
 
-Tool pages are placeholders for now.
+Each tool page combines the interactive tool with SEO text (see `src/i18n/dictionaries`).
 
 ## Development
 
@@ -23,7 +24,7 @@ Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://tools.example.com`) when building so c
 ## Deploy (built locally, no GitHub Actions)
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://tools.example.com npm run deploy
+NEXT_PUBLIC_SITE_URL=https://tools.example.com NEXT_PUBLIC_CF_BEACON_TOKEN=<token> npm run deploy
 ```
 
 Builds the site and publishes `out/` to the `gh-pages` branch. One-time setup:
@@ -31,6 +32,15 @@ Builds the site and publishes `out/` to the `gh-pages` branch. One-time setup:
 1. GitHub → Settings → Pages → Deploy from a branch → `gh-pages` / root, custom domain = your subdomain.
 2. DNS: `CNAME <subdomain> → ereldev-inc.github.io`.
 3. Add `public/CNAME` containing the subdomain (so each deploy keeps it).
+
+## Analytics
+
+Page views per URL are measured with [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) (cookieless, no consent banner needed for this alone). The beacon is only included when a token is provided at build time:
+
+1. Cloudflare dashboard → Analytics & Logs → Web Analytics → Add a site (enter your subdomain; no DNS change needed) and copy the beacon token.
+2. Put it in `.env.local` (gitignored): `NEXT_PUBLIC_CF_BEACON_TOKEN=<token>`, or prefix the deploy command with it.
+
+Tools are told apart by URL: `/en/`, `/fr/` are the homepages, every tool has its own path.
 
 ## Adding a tool
 

@@ -87,89 +87,8 @@ export function CompressionTool({ labels }: { labels: Labels }) {
 
   return (
     <div className="grid gap-6">
-      <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-engine">
-        <h2 id="ct-engine" className="text-lg font-semibold">{labels.layoutTitle}</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="ct-count" className="mb-1 block text-sm font-medium text-muted">
-              {labels.cylinders}
-            </label>
-            <select
-              id="ct-count"
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value))}
-              className={fieldClass}
-            >
-              {CYLINDER_COUNTS.map((n) => (
-                <option key={n} value={n}>{n}</option>
-              ))}
-            </select>
-          </div>
-          <div role="group" aria-label={labels.architecture}>
-            <span className="mb-1 block text-sm font-medium text-muted">{labels.architecture}</span>
-            <div className="flex gap-2">
-              <button type="button" aria-pressed={!vee} onClick={() => setWantsVee(false)} className={segClass}>
-                {labels.inline}
-              </button>
-              <button type="button" aria-pressed={vee} disabled={!canVee} onClick={() => setWantsVee(true)} className={segClass}>
-                {labels.vee}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-spec">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 id="ct-spec" className="text-lg font-semibold">{labels.specTitle}</h2>
-          <div role="group" aria-label={labels.unit} className="flex gap-2">
-            {(["bar", "psi"] as const).map((u) => (
-              <button key={u} type="button" aria-pressed={unit === u} onClick={() => changeUnit(u)} className={`${segClass} min-w-16 py-1.5`}>
-                {u}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {[
-            { id: "ct-min", label: labels.min, value: min, set: setMin },
-            { id: "ct-max", label: labels.max, value: max, set: setMax },
-          ].map((f) => (
-            <div key={f.id}>
-              <label htmlFor={f.id} className="mb-1 block text-sm font-medium text-muted">{f.label} ({unit})</label>
-              <input
-                id={f.id}
-                type="number"
-                inputMode="decimal"
-                min="0"
-                step={step}
-                value={f.value}
-                onChange={(e) => f.set(e.target.value)}
-                className={fieldClass}
-              />
-            </div>
-          ))}
-        </div>
-        {!specValid && (
-          <p className={`mt-3 text-sm ${specInvalid ? "text-bad" : "text-muted"}`} role={specInvalid ? "alert" : undefined}>
-            {specInvalid ? labels.specInvalid : labels.specHint}
-          </p>
-        )}
-      </section>
-
-      <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-readings">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 id="ct-readings" className="text-lg font-semibold">{labels.readingsTitle}</h2>
-          <button
-            type="button"
-            onClick={() => setReadings([])}
-            className="text-sm font-medium text-accent underline-offset-2 hover:underline"
-          >
-            {labels.reset}
-          </button>
-        </div>
-
-        <div className="mt-4">
+      <section className="rounded-xl border border-border bg-surface p-5" aria-label={labels.diagram}>
+        <div>
           <EngineDiagram
             count={count}
             vee={vee}
@@ -179,46 +98,134 @@ export function CompressionTool({ labels }: { labels: Labels }) {
           />
         </div>
 
-        <ul className="mt-6 grid gap-3">
-          {values.map((value, i) => (
-            <li key={i} className="grid grid-cols-[1fr_auto] items-center gap-3 sm:grid-cols-[8rem_1fr_9rem]">
-              <label htmlFor={`ct-cyl-${i}`} className="font-medium sm:col-auto">
-                {labels.cylinder} {i + 1}
+      </section>
+
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <div className="grid gap-6">
+        <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-engine">
+          <h2 id="ct-engine" className="text-lg font-semibold">{labels.layoutTitle}</h2>
+          <div className="mt-4 grid gap-4">
+            <div>
+              <label htmlFor="ct-count" className="mb-1 block text-sm font-medium text-muted">
+                {labels.cylinders}
               </label>
-              <span className="order-3 col-span-2 sm:order-none sm:col-span-1">
+              <select
+                id="ct-count"
+                value={count}
+                onChange={(e) => setCount(Number(e.target.value))}
+                className={fieldClass}
+              >
+                {CYLINDER_COUNTS.map((n) => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+            </div>
+            <div role="group" aria-label={labels.architecture}>
+              <span className="mb-1 block text-sm font-medium text-muted">{labels.architecture}</span>
+              <div className="flex gap-2">
+                <button type="button" aria-pressed={!vee} onClick={() => setWantsVee(false)} className={segClass}>
+                  {labels.inline}
+                </button>
+                <button type="button" aria-pressed={vee} disabled={!canVee} onClick={() => setWantsVee(true)} className={segClass}>
+                  {labels.vee}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-spec">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 id="ct-spec" className="text-lg font-semibold">{labels.specTitle}</h2>
+            <div role="group" aria-label={labels.unit} className="flex gap-2">
+              {(["bar", "psi"] as const).map((u) => (
+                <button key={u} type="button" aria-pressed={unit === u} onClick={() => changeUnit(u)} className={`${segClass} min-w-16 py-1.5`}>
+                  {u}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            {[
+              { id: "ct-min", label: labels.min, value: min, set: setMin },
+              { id: "ct-max", label: labels.max, value: max, set: setMax },
+            ].map((f) => (
+              <div key={f.id}>
+                <label htmlFor={f.id} className="mb-1 block text-sm font-medium text-muted">{f.label} ({unit})</label>
                 <input
-                  id={`ct-cyl-${i}`}
+                  id={f.id}
                   type="number"
                   inputMode="decimal"
                   min="0"
                   step={step}
-                  value={value}
-                  placeholder={unit}
-                  onChange={(e) => setReading(i, e.target.value)}
+                  value={f.value}
+                  onChange={(e) => f.set(e.target.value)}
                   className={fieldClass}
                 />
-              </span>
-              <span className={`rounded-full border px-3 py-1 text-center text-sm font-semibold ${statusStyle[statuses[i]]}`}>
-                {statuses[i] === "ok" ? "✓ " : statuses[i] === "empty" ? "" : "✕ "}
-                {statusLabel[statuses[i]]}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {checked > 0 && (
-          <div aria-live="polite" className="mt-6 rounded-lg bg-surface-hover p-4">
-            <p className="font-semibold">
-              {labels.summary.replace("{ok}", String(okCount)).replace("{total}", String(count))}
-            </p>
-            {complete && (
-              <p className={`mt-1 ${okCount === count ? "text-ok" : "text-bad"}`}>
-                {okCount === count ? labels.allOk : labels.someBad}
-              </p>
-            )}
+              </div>
+            ))}
           </div>
-        )}
-      </section>
+          {!specValid && (
+            <p className={`mt-3 text-sm ${specInvalid ? "text-bad" : "text-muted"}`} role={specInvalid ? "alert" : undefined}>
+              {specInvalid ? labels.specInvalid : labels.specHint}
+            </p>
+          )}
+        </section>
+        </div>
+
+        <section className="rounded-xl border border-border bg-surface p-5" aria-labelledby="ct-readings">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 id="ct-readings" className="text-lg font-semibold">{labels.readingsTitle}</h2>
+            <button
+              type="button"
+              onClick={() => setReadings([])}
+              className="text-sm font-medium text-accent underline-offset-2 hover:underline"
+            >
+              {labels.reset}
+            </button>
+          </div>
+
+          <ul className="mt-6 grid gap-3">
+            {values.map((value, i) => (
+              <li key={i} className="grid grid-cols-[5.5rem_minmax(0,1fr)_auto] items-center gap-3">
+                <label htmlFor={`ct-cyl-${i}`} className="font-medium">
+                  {labels.cylinder} {i + 1}
+                </label>
+                <span>
+                  <input
+                    id={`ct-cyl-${i}`}
+                    type="number"
+                    inputMode="decimal"
+                    min="0"
+                    step={step}
+                    value={value}
+                    placeholder={unit}
+                    onChange={(e) => setReading(i, e.target.value)}
+                    className={fieldClass}
+                  />
+                </span>
+                <span className={`rounded-full border whitespace-nowrap px-3 py-1 text-center text-sm font-semibold ${statusStyle[statuses[i]]}`}>
+                  {statuses[i] === "ok" ? "✓ " : statuses[i] === "empty" ? "" : "✕ "}
+                  {statusLabel[statuses[i]]}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {checked > 0 && (
+            <div aria-live="polite" className="mt-6 rounded-lg bg-surface-hover p-4">
+              <p className="font-semibold">
+                {labels.summary.replace("{ok}", String(okCount)).replace("{total}", String(count))}
+              </p>
+              {complete && (
+                <p className={`mt-1 ${okCount === count ? "text-ok" : "text-bad"}`}>
+                  {okCount === count ? labels.allOk : labels.someBad}
+                </p>
+              )}
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

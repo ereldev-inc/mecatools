@@ -1,31 +1,13 @@
+import { cylinderLayout } from "@/lib/engine-layout";
+
 export type CylinderStatus = "ok" | "low" | "high" | "empty";
 
 const R = 30;
 const SPACING = 72;
 const PAD = R + 6;
-const SIN45 = Math.SQRT1_2;
-
-type Pos = { x: number; y: number };
-
-/** Cylinder centers (before padding) for an inline or 90° V layout. */
-function layout(count: number, vee: boolean): { pos: Pos[]; w: number; h: number } {
-  if (!vee) {
-    return {
-      pos: Array.from({ length: count }, (_, i) => ({ x: i * SPACING, y: 0 })),
-      w: (count - 1) * SPACING,
-      h: 0,
-    };
-  }
-  const perBank = count / 2;
-  const offset = perBank === 1 ? 70 : 60;
-  // Pivot at the crankshaft (origin); banks rise to the left and right.
-  // Cylinders alternate between banks: 1 left, 2 right, 3 left, ...
-  const pos = Array.from({ length: count }, (_, i) => {
-    const side = i % 2 === 0 ? -1 : 1;
-    const d = offset + Math.floor(i / 2) * SPACING;
-    return { x: side * SIN45 * d, y: -SIN45 * d };
-  });
-  return { pos, w: 0, h: 0 };
+function layout(count: number, vee: boolean) {
+  const offset = count / 2 === 1 ? 70 : 60;
+  return cylinderLayout(count, vee, SPACING, offset);
 }
 
 export function EngineDiagram({
@@ -41,7 +23,7 @@ export function EngineDiagram({
   values: string[];
   label: string;
 }) {
-  const { pos } = layout(count, vee);
+  const pos = layout(count, vee);
   const xs = pos.map((p) => p.x);
   const ys = pos.map((p) => p.y);
   const minX = Math.min(...xs) - PAD;

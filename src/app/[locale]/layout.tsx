@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Analytics } from "@/components/Analytics";
 import { Shell, type NavItem } from "@/components/Shell";
 import { hasLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
     href: toolPath(locale, tool),
     title: t.tools[tool.id].name,
     icon: tool.icon,
+    group: tool.group === "converters" ? t.nav.converters : t.nav.tools,
   }));
 
   return (
@@ -55,14 +57,15 @@ export default async function LocaleLayout({
             language: t.nav.language,
           }}
         >
-          <main id="content" className="mx-auto w-full max-w-3xl flex-1 px-4 py-8 md:px-8 md:py-12">
+          <main id="content" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 md:px-8 md:py-12">
             {children}
           </main>
-          {/* Phase 2: ad slot / analytics consent banner go here */}
+          {/* Phase 2: ad slot / consent banner go here */}
           <footer className="border-t border-border px-4 py-4 text-sm text-muted md:px-8">
             © {new Date().getFullYear()} {t.footer.rights}
           </footer>
         </Shell>
+        <Analytics />
       </body>
     </html>
   );

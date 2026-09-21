@@ -18,7 +18,12 @@ export type ShellLabels = {
   language: string;
 };
 
-export type NavItem = { href: string; title: string; icon: IconName };
+export type NavItem = {
+  href: string;
+  title: string;
+  icon: IconName;
+  group: string;
+};
 
 export function Shell({
   locale,
@@ -111,19 +116,22 @@ export function Shell({
             </svg>
             {labels.home}
           </Link>
-          <p className="mt-4 px-3 text-xs font-semibold uppercase tracking-wider text-muted">
-            {labels.tools}
-          </p>
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={pathname === item.href ? "page" : undefined}
-              className={linkClass}
-            >
-              <Icon name={item.icon} />
-              {item.title}
-            </Link>
+          {items.map((item, i) => (
+            <div key={item.href} className="flex flex-col gap-1">
+              {item.group !== items[i - 1]?.group && (
+                <p className="mt-4 px-3 text-xs font-semibold uppercase tracking-wider text-muted">
+                  {item.group}
+                </p>
+              )}
+              <Link
+                href={item.href}
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={linkClass}
+              >
+                <Icon name={item.icon} />
+                {item.title}
+              </Link>
+            </div>
           ))}
         </nav>
 
