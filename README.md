@@ -5,6 +5,7 @@ Free online tools for motorcycle mechanics. Static Next.js site (App Router, Typ
 ## Tools
 
 - Compression test (`/en/compression-test/`, `/fr/releve-compression/`)
+- Tire age (`/en/tire-age/`, `/fr/age-pneu-dot/`)
 - Valve clearance (`/en/valve-clearance/`, `/fr/jeu-aux-soupapes/`)
 - Valve shim calculator (`/en/valve-shim-calculator/`, `/fr/calcul-pastilles-soupapes/`)
 

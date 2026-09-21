@@ -2,7 +2,7 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
 export type ToolId = keyof Dictionary["tools"];
-export type IconName = "gauge" | "ruler" | "swap" | "wrench" | "disc";
+export type IconName = "gauge" | "ruler" | "swap" | "wrench" | "disc" | "clock";
 export type ToolGroup = "converters" | "workshop";
 
 export type Tool = {
@@ -32,6 +32,12 @@ export const tools: Tool[] = [
     icon: "gauge",
     group: "workshop",
     slugs: { en: "compression-test", fr: "releve-compression" },
+  },
+  {
+    id: "tireAge",
+    icon: "clock",
+    group: "workshop",
+    slugs: { en: "tire-age", fr: "age-pneu-dot" },
   },
   {
     id: "valveClearance",

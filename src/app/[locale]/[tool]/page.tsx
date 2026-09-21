@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { UnitConverter } from "@/components/tools/UnitConverter";
 import { converters } from "@/lib/converters";
+import { TireAgeTool } from "@/components/tools/TireAgeTool";
 import { ValveShimTool } from "@/components/tools/ValveShimTool";
 import { ValveClearanceTool } from "@/components/tools/ValveClearanceTool";
 import { CompressionTool } from "@/components/tools/CompressionTool";
@@ -122,6 +123,10 @@ export default async function ToolPage({ params }: Props) {
       ) : tool.id === "valveClearance" ? (
         <div className="mt-8">
           <ValveClearanceTool labels={t.valves} />
+        </div>
+      ) : tool.id === "tireAge" ? (
+        <div className="mt-8 max-w-3xl">
+          <TireAgeTool locale={locale} labels={t.tire} />
         </div>
       ) : tool.id === "valveShims" ? (
         <div className="mt-8">
