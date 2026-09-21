@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+<loc>https://mecatools.ereldev.com/en/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/torque-converter/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/torque-converter/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/convertisseur-couple-serrage/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/convertisseur-couple-serrage/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/torque-converter/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/convertisseur-couple-serrage/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/compression-converter/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/compression-converter/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/convertisseur-compression/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/convertisseur-compression/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/compression-converter/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/convertisseur-compression/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/compression-test/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/compression-test/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/releve-compression/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/releve-compression/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/compression-test/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/releve-compression/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/tire-age/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/tire-age/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/age-pneu-dot/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/age-pneu-dot/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/tire-age/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/age-pneu-dot/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/valve-clearance/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/valve-clearance/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/jeu-aux-soupapes/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/jeu-aux-soupapes/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/valve-clearance/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/jeu-aux-soupapes/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/en/valve-shim-calculator/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/valve-shim-calculator/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/calcul-pastilles-soupapes/" />
+</url>
+<url>
+<loc>https://mecatools.ereldev.com/fr/calcul-pastilles-soupapes/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mecatools.ereldev.com/en/valve-shim-calculator/" />
+<xhtml:link rel="alternate" hreflang="fr" href="https://mecatools.ereldev.com/fr/calcul-pastilles-soupapes/" />
+</url>
+</urlset>

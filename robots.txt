@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://mecatools.ereldev.com/sitemap.xml
