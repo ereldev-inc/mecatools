@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CompressionTool } from "@/components/tools/CompressionTool";
 import { JsonLd } from "@/components/JsonLd";
 import { hasLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -103,16 +104,21 @@ export default async function ToolPage({ params }: Props) {
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{text.title}</h1>
       <p className="mt-3 text-lg text-muted">{text.intro}</p>
 
-      {/* Tool goes here — implemented tool by tool. */}
-      <section
-        aria-labelledby="tool-soon"
-        className="mt-8 rounded-xl border border-dashed border-border bg-surface p-8 text-center"
-      >
-        <h2 id="tool-soon" className="text-xl font-semibold">
-          {t.tool.soon}
-        </h2>
-        <p className="mt-2 text-muted">{t.tool.soonBody}</p>
-      </section>
+      {tool.id === "compressionTest" ? (
+        <div className="mt-8">
+          <CompressionTool labels={t.compression} />
+        </div>
+      ) : (
+        <section
+          aria-labelledby="tool-soon"
+          className="mt-8 rounded-xl border border-dashed border-border bg-surface p-8 text-center"
+        >
+          <h2 id="tool-soon" className="text-xl font-semibold">
+            {t.tool.soon}
+          </h2>
+          <p className="mt-2 text-muted">{t.tool.soonBody}</p>
+        </section>
+      )}
 
       <article className="mt-12">
         <h2 className="text-2xl font-semibold">{t.tool.about}</h2>
